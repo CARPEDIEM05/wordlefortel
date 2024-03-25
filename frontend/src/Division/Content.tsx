@@ -115,7 +115,7 @@ export function Content(){
       <div className=" mt-4 mb-4 text-2xl">Guess today's word</div>
       <div>
           <input className=" text-center shadow-2xl border-2 rounded-md w-56 h-10"
-              onChange={(e) => setInputWord(e.target.value.toUpperCase)}
+              onChange={(e) => setInputWord(e.target.value.toUpperCase())}
               type="text"
               placeholder="Word"
           />
