@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react"
 import { BACKEND_URL } from "../config";
+import { Navbar } from "../Division/Navbar";
 
 export function InsertWord(){    
     const[word,setWord] = useState("");
@@ -16,16 +17,21 @@ export function InsertWord(){
     }
     
     return <div>
-        <input onChange={(e)=>{
+        <Navbar></Navbar>
+        <div className="flex justify-center items-center h-screen">
+        <input className=" m-2 border-2 rounded-md w-40 h-10 pl-2" onChange={(e)=>{
             setWord(e.target.value);
         }} type="text" placeholder="word"/>
 
 
-        <input onChange={(e)=>{
+        <input className="m-2  border-2 rounded-md w-40 h-10 pl-2" onChange={(e)=>{
             setDescription(e.target.value);
         }} type="text" placeholder="description" />
 
-        <button onClick={insertWord}>Insert word</button>
+        <button className=" w-40 h-10 bg-green-600 text-white rounded-md shadow-2xl" onClick={insertWord}>Insert word</button>
 
     </div>
+
+    </div>
+     
 }

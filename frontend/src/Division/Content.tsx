@@ -48,6 +48,15 @@ export function Content(){
    async function handleGuess() {
         // Reset checkArray
         try{
+            console.log(inputWord);
+            console.log(inputWord.length);
+            if(inputWord.length>length||inputWord.length<length){
+                
+                console.log(length);
+                console.log(inputWord.length);
+                alert("Wrong word inserted");
+                return;
+            }
             await axios.post(`${BACKEND_URL}/api/v1/game/check`,{
                 inputWord: inputWord
             }).then((response)=>{
