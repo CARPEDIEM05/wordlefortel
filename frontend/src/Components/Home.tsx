@@ -4,11 +4,6 @@ import { Navbar } from "../Division/Navbar";
 import { Content } from "../Division/Content";
 
 export function Home(){
-
-    function getWordLength(){
-        
-
-    }
     const token = localStorage.getItem("token");
     
     const naviagte = useNavigate();

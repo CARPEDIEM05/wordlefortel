@@ -1,7 +1,5 @@
-import { useState } from "react"
-import { Button } from "react-bootstrap"
 import { useRecoilState } from "recoil";
-import { email, name, password } from "../Store/Atoms";
+import { email, password } from "../Store/Atoms";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
@@ -14,14 +12,16 @@ export function Signin(){
     const [passwordVal, setPasswordVal] = useRecoilState(password);
 
     async function sendSignInRequest(){
-        const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`,{
+        await axios.post(`${BACKEND_URL}/api/v1/user/signin`,{
             email: emailVal,
             password: passwordVal
+        }).then((response)=>{
+            const jwt = response.data.token;
+            console.log("JWT debug");
+            console.log(jwt);
+            localStorage.setItem("token",jwt);
+            navigate('/home');
         })
-        
-        const jwt = response.data.token;
-        localStorage.setItem("token", jwt);
-        navigate('/home');
     }
 
     return <div className="grid grid-cols-1 lg:grid-cols-2 justify-center items-center font-serif h-full">
@@ -63,10 +63,4 @@ export function Signin(){
     </div>
     
 </div>
-}
-
-interface LabelsType{
-    value: string,
-    placeholderText: string,
-    inputType: string
 }

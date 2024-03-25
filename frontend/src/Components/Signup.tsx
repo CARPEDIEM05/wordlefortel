@@ -1,7 +1,4 @@
 import { useState } from "react"
-import { Button } from "react-bootstrap"
-import { useRecoilState } from "recoil";
-import { email, name, password } from "../Store/Atoms";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_URL } from "../config";

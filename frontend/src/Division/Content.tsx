@@ -1,8 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { wordLength } from "../Store/Atoms";
 import { BACKEND_URL } from "../config";
 
 type Matrix = number[][];
@@ -10,11 +7,9 @@ type MatrixChar= string[][];
 
 
 export function Content(){
-    const navigate = useNavigate();
     const token = localStorage.getItem("token");
 
     const [finalAnswerCheck, setFinalAnswerCheck] = useState(false);
-    const [chancesLeft, setChancesLeft] = useState(true);
     const[count,setCount] = useState(0);
     const[description,setDescription] = useState('');
     let length = 0;    
@@ -23,10 +18,7 @@ export function Content(){
    
     const [chance, setChance] = useState(6);
     const [inputWord, setInputWord] = useState('');
-    function logout(){
-        localStorage.clear();
-        navigate("/signin");
-    }
+    
 
     useEffect(()=>{
         getLength();
@@ -36,7 +28,7 @@ export function Content(){
         try{
             await axios.get(`${BACKEND_URL}/api/v1/game/length`,{
                 headers: {
-                    'Authorization': `${token}`
+                    'Authorization': `Bearer ${token}`
                 }
         }).then((response)=>{
             length = response.data.length;
@@ -127,7 +119,7 @@ export function Content(){
       </div>
       <div>
       </div>
-      {!finalAnswerCheck && chancesLeft && (
+      {!finalAnswerCheck  && (
         <div>
           <button  className=" my-4 bg-black text-white rounded-md w-56 h-8" onClick={handleGuess}>Check word</button>
         </div>
@@ -163,7 +155,7 @@ function Row({arr,arrString}:TypeRow){
     return (
         <div >
     {arr.map((item, i) => (
-        <Box key={cnt++}  arr={arr[i]} arrString={arrString[i]} />
+        <Box key={cnt++}  arr={item} arrString={arrString[i]} />
     ))}
 </div>
 

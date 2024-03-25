@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navbar } from "../Division/Navbar";
 
 // Define the TypeScript interface for the data items

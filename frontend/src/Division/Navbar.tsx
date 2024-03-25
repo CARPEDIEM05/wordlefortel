@@ -2,6 +2,10 @@ import { useNavigate } from "react-router-dom"
 
 export function Navbar(){
     const navigate = useNavigate();
+    function logout(){
+      localStorage.clear();
+      navigate("/signin");
+  }
     return <div>
         
 
@@ -38,7 +42,7 @@ export function Navbar(){
           <a onClick={()=>{
             localStorage.clear();
             navigate("/signin");
-          }} className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><button>Logout</button></a>
+          }} className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><button onClick={logout}>Logout</button></a>
         </li>
         
       </ul>
