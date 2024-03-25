@@ -59,7 +59,7 @@ export function Signin(){
         </div>
     </div>
     <div className="flex justify-center items-center bg-slate-900 h-screen shadow-2xl m-4 lg:visible invisible">
-        <div className=" text-4xl text-white">Wordle By Netcracker</div>
+        <div className=" text-4xl text-white">Dynamic Wordle</div>
     </div>
     
 </div>
