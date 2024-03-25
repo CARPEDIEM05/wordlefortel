@@ -50,13 +50,7 @@ export function Content(){
         try{
             console.log(inputWord);
             console.log(inputWord.length);
-            if(inputWord.length>length||inputWord.length<length){
-                
-                console.log(length);
-                console.log(inputWord.length);
-                alert("Wrong word inserted");
-                return;
-            }
+            
             await axios.post(`${BACKEND_URL}/api/v1/game/check`,{
                 inputWord: inputWord
             }).then((response)=>{
@@ -121,7 +115,7 @@ export function Content(){
       <div className=" mt-4 mb-4 text-2xl">Guess today's word</div>
       <div>
           <input className=" text-center shadow-2xl border-2 rounded-md w-56 h-10"
-              onChange={(e) => setInputWord(e.target.value)}
+              onChange={(e) => setInputWord(e.target.value.toUpperCase)}
               type="text"
               placeholder="Word"
           />
