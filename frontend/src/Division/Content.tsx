@@ -51,10 +51,13 @@ export function Content(){
             console.log(inputWord);
             console.log(inputWord.length);
             
-            await axios.post(`${BACKEND_URL}/api/v1/game/check`,{
+            const resAxios = await axios.post(`${BACKEND_URL}/api/v1/game/check`,{
                 inputWord: inputWord
             }).then((response)=>{
-                console.log(response);
+                if(!response.data){
+                    return false;
+            }
+
                 const numberAsString: string = response.data.result+'';
                 
        
@@ -80,8 +83,7 @@ export function Content(){
                 const newMatrixNumber = [...matrixNumber];
                 
                 
-                for (let i = 0; i < newMatrixNumber[0].length; i++) {
-                   
+                for (let i = 0; i < newMatrixNumber[0].length; i++) {    
                     // Ensure to also copy the sub-array to avoid mutating the original state
                     newMatrixChar[count] = [...newMatrixChar[count]];
                     newMatrixNumber[count] = [...newMatrixNumber[count]];
@@ -95,8 +97,12 @@ export function Content(){
                 setMatrixNumber(newMatrixNumber);
 
                 setCount(count + 1);
+                return true;
                 
             })
+            if(!resAxios){
+                alert("Please add the valid word");
+            }
         } catch(e) {
             console.log(e);
             console.log("Error is there");
